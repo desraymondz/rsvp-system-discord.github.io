@@ -11,7 +11,7 @@ document.getElementById('reservationForm').addEventListener('submit', async func
     };
 
     // Discord webhook URL
-    const webhookURL = 'YOUR-DISCORD-WEBHOOK-URL';
+    const webhookURL = 'https://discord.com/api/webhooks/1262698461867016312/VgiIb5KQ8N--nwa19-JF76mtWV220CbZlmxyu6SBcM__YNMv-Mh09DSCmLmCffsuE1ZR';
 
     // Prepare the message payload for Discord
     const messagePayload = {
