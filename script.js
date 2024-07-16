@@ -15,7 +15,7 @@ document.getElementById('reservationForm').addEventListener('submit', async func
 
     // Prepare the message payload for Discord
     const messagePayload = {
-        content: `New Reservation:\n\nName: ${formData.name}\nEmail: ${formData.email}\nDate: ${formData.date}\nTime: ${formData.time}\nService: ${formData.service}\nNumber of Pax: ${formData.pax}`
+        content: `🚨New Reservation:🚨\n\n🤵🏻‍♂️Name: ${formData.name}\n🔗Email: ${formData.email}\n🗓️Date: ${formData.date}\n⏰Time: ${formData.time}\n💆🏻‍♀️Service: ${formData.service}\n👨‍👨‍👦‍👦Number of Pax: ${formData.pax}`
     };
 
     try {
