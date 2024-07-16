@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spa Reservation Form</title>
+</head>
+<body>
+    <h1>Spa Reservation Form</h1>
+    <form id="reservationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br>
+
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required><br>
+
+        <label for="service">Type of Service:</label>
+        <input type="text" id="service" name="service" required><br>
+
+        <label for="pax">Number of Pax:</label>
+        <input type="number" id="pax" name="pax" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                service: document.getElementById('service').value,
+                pax: document.getElementById('pax').value
+            };
+
+            // Discord webhook URL
+            const webhookURL = 'YOUR-DISCORD-WEBHOOK-URL';
+
+            // Prepare the message payload for Discord
+            const messagePayload = {
+                content: `New Reservation:\n\nName: ${formData.name}\nEmail: ${formData.email}\nDate: ${formData.date}\nTime: ${formData.time}\nService: ${formData.service}\nNumber of Pax: ${formData.pax}`
+            };
+
+            try {
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(messagePayload)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to send reservation to Discord');
+                }
+
+                alert('Reservation sent successfully!');
+                document.getElementById('reservationForm').reset();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to send reservation. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
